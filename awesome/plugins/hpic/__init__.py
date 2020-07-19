@@ -5,11 +5,15 @@ from jieba import posseg
 from .data_source import get_hpic_website
 
 
-__plugin_name__ = '来一份色图'
-__plugin_usage__ = r"""
-天气查询
+__plugin_name__ = '一份色图'
+__plugin_usage__ = r"""色图机器人使用方法
 
-天气  [城市名称]
+@机器人 来一份色图/涩图
+@机器人 一份色图 /色图一份
+（只要包含一份和色图即可）
+
+1.1.2 修复了私发色图的bug(特性)
+1.1.1 稍微优化了点图片查看的排版，增加了命令'来份色图','我要色图'
 """
 
 # on_command 装饰器将函数声明为一个命令处理器
@@ -51,7 +55,7 @@ async def _(session: CommandSession):
 # on_natural_language 装饰器将函数声明为一个自然语言处理器
 # keywords 表示需要响应的关键词，类型为任意可迭代对象，元素类型为 str
 # 如果不传入 keywords，则响应所有没有被当作命令处理的消息
-@on_natural_language(keywords={'一份'})
+@on_natural_language(keywords={'一份','来份','我要'})
 async def _(session: NLPSession):
     # 去掉消息首尾的空白符
     stripped_msg = session.msg_text.strip()

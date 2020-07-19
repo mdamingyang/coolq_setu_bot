@@ -3,12 +3,12 @@ import json
 from os import path
 import datetime
 
-async def get_hpic_website(canshu,sub_type) :
+async def get_hpic_website(canshu,sub_type):
     # 这里简单返回一个字符串
     # 实际应用中，这里应该调用返回真实数据的天气 API，并拼接成天气预报内容
     if sub_type == 'group':
         return "禁止偷偷康色图哟，好东西大家一起分享ヾ(≧ ▽ ≦)ゝ"
-
+    
     rsp = ''
     with open(path.join(path.dirname(__file__), 'config.json')) as json_config:
         config = json.load(json_config)
