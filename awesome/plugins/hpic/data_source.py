@@ -27,7 +27,7 @@ async def get_hpic_website(canshu,sub_type):
 
             url = 'http://www.qianyucat.top/show_image/?'
             for short_url in short_urls:
-                url = url + "imageID[]=" + short_url + "&"
+                url = url + "imageID[]=" + short_url[14:] + "&"
             url = url[:-1]
             rspurl = [url]
             rspurl = generate_shout_links(rspurl)
@@ -48,10 +48,8 @@ async def get_hpic_website(canshu,sub_type):
 
 
 def generate_shout_links(long_urls):
-    key = "ggoHFniM3jh5"
-
-
-    url = "https://dwz.lc/api/"
+    key = "5f1a4a13b1b63c55182a9be4@d2957d1cab4eb6679c456a1b8f7e2af6"
+    url = "http://suo.im/api.htm"
     short_urls = []
 
     #请求短网址
@@ -60,7 +58,12 @@ def generate_shout_links(long_urls):
             "url": long_url,
             "key": key
         }
-        response = requests.request("GET", url, params=querystring)
+        
+        try:
+            response = requests.request("GET", url, params=querystring)
+        except Exception:
+            print('请求出错')
+            
         short_urls.append(response.text)
 
     return short_urls
